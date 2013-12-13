@@ -17,8 +17,11 @@ class User < ActiveRecord::Base
     return !!self.roles.find_by_name(role.to_s.camelize)
   end
 
-  def usr
-      return !!self.roles.find_by_name(":admin")
+  after_create :assign_default_role
+
+  def assign_default_role
+    Rails.logger.info("------aaa-------")
+    add_role(:usr)
   end
 
 end

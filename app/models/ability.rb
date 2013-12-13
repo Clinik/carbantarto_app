@@ -6,7 +6,14 @@ class Ability
     if user.has_role? :admin
       can :manage, :all
     else
+    if user.has_role? :usr
       can :read, :all
+      can :update, Vehicle
+      cannot :update, Property
+      can :destroy, Vehicle
+      cannot :destroy, Property
+      
+    end
     end
   end
 end

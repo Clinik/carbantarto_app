@@ -16,10 +16,10 @@
             <th>Color</th>
             <th>Owner</th>
             <th></th>
-            <% if can? :update, @vehicle %>
+            <% if can? :update, Vehicle %>
             <th></th>
             <% end %>
-            <% if can? :destroy, @vehicle %>
+            <% if can? :destroy, Vehicle %>
             <th></th>
             <% end %>
       </tr>
@@ -31,21 +31,21 @@
             <td><%= vehicle.subtype %></td>
             <td><%= vehicle.year %></td>
             <td><%= vehicle.color %></td>
-            <td><%= vehicle.user %></td>
+            <td><%= vehicle.user.email %></td>
          
-        <% if can? :read, @vehicle %>
+        <% if can? :read, Vehicle %>
         <td> 
           <%= link_to 'Show', vehicle %>
         </td>
         <% end %>
       
-        <% if can? :update, @vehicle %>
+        <% if can? :update, Vehicle %>
         <td>
           <%= link_to 'Edit', edit_vehicle_path(vehicle) %>
         </td>
         <% end %>
         
-        <% if can? :destroy, @vehicle %>
+        <% if can? :destroy, Vehicle %>
         <td>
           <%= link_to 'Destroy', vehicle, method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
