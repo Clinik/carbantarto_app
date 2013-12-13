@@ -16,21 +16,41 @@
             <th>Color</th>
             <th>Owner</th>
             <th></th>
-        <th></th>
-        <th></th>
+            <% if can? :update, @vehicle %>
+            <th></th>
+            <% end %>
+            <% if can? :destroy, @vehicle %>
+            <th></th>
+            <% end %>
       </tr>
     </thead>
 
     <tbody>
       <%= content_tag_for(:tr, @vehicles) do |vehicle| %>
             <td><%= vehicle.manufacturer %></td>
-            <td><%= vehicle.modell %></td>
+            <td><%= vehicle.subtype %></td>
             <td><%= vehicle.year %></td>
             <td><%= vehicle.color %></td>
-            <td><%= vehicle.owner %></td>
-            <td><%= link_to 'Show', vehicle %></td>
-        <td><%= link_to 'Edit', edit_vehicle_path(vehicle) %></td>
-        <td><%= link_to 'Destroy', vehicle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= vehicle.user %></td>
+         
+        <% if can? :read, @vehicle %>
+        <td> 
+          <%= link_to 'Show', vehicle %>
+        </td>
+        <% end %>
+      
+        <% if can? :update, @vehicle %>
+        <td>
+          <%= link_to 'Edit', edit_vehicle_path(vehicle) %>
+        </td>
+        <% end %>
+        
+        <% if can? :destroy, @vehicle %>
+        <td>
+          <%= link_to 'Destroy', vehicle, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+        <% end %>
+        
       <% end %>
     </tbody>
   </table>

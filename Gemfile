@@ -7,11 +7,14 @@ gem 'rails', '3.2.15'
 
 gem 'sqlite3'
 
-# for bootstrap
+# ordered
 gem 'therubyracer'
 gem 'twitter-bootstrap-rails'
 gem 'less-rails'
 gem 'bootstrap-generators'
+gem 'cancan'
+gem 'devise'
+gem 'rolify'
 
 # Gems used only for assets and not required
 # in production environments by default.

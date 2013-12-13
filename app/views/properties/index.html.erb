@@ -12,17 +12,25 @@
       <tr>
             <th>Name</th>
             <th></th>
-        <th></th>
-        <th></th>
+        <% if can? :update, @vehicle %><th></th><% end %>
+        <% if can? :destroy, @vehicle %><th></th><% end %>
       </tr>
     </thead>
 
     <tbody>
       <%= content_tag_for(:tr, @properties) do |property| %>
-            <td><%= property.name %></td>
-            <td><%= link_to 'Show', property %></td>
-        <td><%= link_to 'Edit', edit_property_path(property) %></td>
-        <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Biztos benne??' } %></td>
+        <td><%= property.name %></td>
+        <td><%= link_to 'Show', property %></td>
+        <% if can? :update, @vehicle %>
+        <td>
+          <%= link_to 'Edit', edit_property_path(property) %>
+        </td>
+        <% end %>
+        <% if can? :destroy, @vehicle %>
+        <td>
+          <%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Sure?' } %>
+        </td>
+        <% end %>
       <% end %>
     </tbody>
   </table>

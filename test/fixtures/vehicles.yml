@@ -2,14 +2,14 @@
 
 one:
   manufacturer: MyString
-  modell: 1
+  modell: MyString
   year: 1
   color: MyString
-  owner: 1
+  user: 1
 
 two:
   manufacturer: MyString
-  modell: 1
+  modell: MyString
   year: 1
   color: MyString
-  owner: 1
+  user: 1

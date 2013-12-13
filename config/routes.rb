@@ -1,14 +1,21 @@
 CarbantartoApp::Application.routes.draw do
+  authenticated :user do
+    root :to => 'home#index'
+  end
+  root :to => 'home#index'
+
   
+  devise_for :users
+  resources :users
+  resources :properties
+  resources :vehicles do
+    resources :users do
+      
+    end
+  end
 
+  resources :home
 
-  resources :vehicles
-
-
-  resources :vehicles
-  resources :main 
-  resources :properties # The priority is based upon order of creation:
-  # first created -> highest priority.
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
@@ -56,7 +63,7 @@ CarbantartoApp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'main#index'
+  #root :to => 'main#index'
 
   # See how all your routes lay out with "rake routes"
 

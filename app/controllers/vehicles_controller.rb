@@ -1,9 +1,12 @@
 class VehiclesController < ApplicationController
+
+  load_and_authorize_resource
+
   # GET /vehicles
   # GET /vehicles.json
   def index
     @vehicles = Vehicle.all
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @vehicles }
@@ -25,7 +28,8 @@ class VehiclesController < ApplicationController
   # GET /vehicles/new.json
   def new
     @vehicle = Vehicle.new
-
+    Rails.logger.info("------------")
+    Rails.logger.info(current_user)
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @vehicle }
@@ -40,8 +44,10 @@ class VehiclesController < ApplicationController
   # POST /vehicles
   # POST /vehicles.json
   def create
-    @vehicle = Vehicle.new(params[:vehicle])
-
+    @vehicle = current_user.vehicles.build(params[:vehicle])
+    
+    #@vehicle = Vehicle.new(params[:vehicle])
+    
     respond_to do |format|
       if @vehicle.save
         format.html { redirect_to @vehicle, notice: 'Vehicle was successfully created.' }

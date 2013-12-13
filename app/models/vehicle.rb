@@ -1,3 +1,6 @@
 class Vehicle < ActiveRecord::Base
-  attr_accessible :color, :manufacturer, :modell, :owner, :year
+  belongs_to :user
+
+  attr_accessible :color, :manufacturer, :subtype, :user, :year
+  
 end
